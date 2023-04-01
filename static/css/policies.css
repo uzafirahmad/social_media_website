@@ -1,0 +1,90 @@
+/* width */
+/* ::-webkit-scrollbar {
+    width: 10px;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+    background: #40484f;
+    border-radius: 10px;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+    background: #202225;
+    border-radius: 10px;
+} */
+
+* {
+    box-sizing: border-box;
+    font-family:  Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    color: black;
+    background-color:white;
+}
+
+.titleoftopic{
+    font-size: min(4vw, 20px);
+    margin-top: min(3vw, 38px);
+    margin-bottom: min(1vw, 13px);
+    font-weight: bold;
+    margin-left: min(1vw, 13px);
+}
+
+.paragraphoftitle{
+    font-size: min(3vw, 15px);
+    margin-left: min(1vw, 13px);
+    padding: 0px min(1vw, 13px);
+}
+
+.policiesheader{
+    z-index: 2;
+    background-color: #29ab97;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%);
+}
+
+.policiesheaderFBMtext{
+    color: white;
+    cursor: pointer;
+    margin-left: min(1vw, 13px);
+    font-weight: bold;
+    font-size: min(4vw, 25px);
+}
+
+.policiesheaderhomeicon{
+    height: min(5vw, 25px);
+    width: min(5vw, 25px);
+    filter: brightness(0) invert(1);
+}
+
+.policiesheaderhomeiconmasterdiv{
+    cursor: pointer;
+    margin-left: auto;
+    margin-top: min(1vw, 13px);
+    margin-bottom: min(1vw, 13px);
+    margin-right: min(1vw, 13px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagecontentsmasterdiv{
+    z-index: 1;
+    position: absolute;
+    top: min(5vw, 35px);
+    padding-bottom: min(1vw, 13px);
+}
+
+.linktag{
+    color: rgb(0, 107, 255);
+}

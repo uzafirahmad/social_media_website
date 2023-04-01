@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/helpandsupport.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/helpandsupport.js'%}" type="text/javascript"></script>
+    <title>Help and Support</title>
+</head>
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="settingsheaderdiv">
+            <p id="mysettingstext">Help and Support</p>
+        </div>
+        <div id="allsettingsoptionsmasterdiv">
+            <button onclick="location.href='{% url 'contactus' %}';" class="settingsoptionsbuttons" id="ChangePassword"><img src="{% static 'images/contact.png'%}" alt="" class="settingsbuttonsicons"/>Contact Us</button>
+            <button onclick="location.href='{% url 'termsandconditions' %}';" class="settingsoptionsbuttons" id="termsandconditions"><img src="{% static 'images/terms.png'%}" alt="" class="settingsbuttonsicons"/>Terms and Conditions</button>
+            <button onclick="location.href='{% url 'DMCA' %}';" class="settingsoptionsbuttons" id="DMCA"><img src="{% static 'images/dmca.png'%}" alt="" class="settingsbuttonsicons"/>DMCA</button>
+            <button onclick="location.href='{% url 'privacypolicy' %}';" class="settingsoptionsbuttons" id="privacypolicy"><img src="{% static 'images/privacy.png'%}" alt="" class="settingsbuttonsicons"/>Privacy Policy</button>
+            <button onclick="location.href='{% url 'cookiepolicy' %}';" class="settingsoptionsbuttons" id="cookiepolicy"><img src="{% static 'images/cookie.png'%}" alt="" class="settingsbuttonsicons"/>Cookie Policy</button>
+            <button onclick="location.href='{% url 'refundpolicy' %}';" class="settingsoptionsbuttons" id="refundpolicy"><img src="{% static 'images/refund.png'%}" alt="" class="settingsbuttonsicons"/>Refund Policy</button>
+            <button onclick="location.href='{% url 'acceptableusepolicy' %}';" class="settingsoptionsbuttons" id="acceptableusepolicy"><img src="{% static 'images/acceptable.png'%}" alt="" class="settingsbuttonsicons"/>Acceptable Use Policy</button>
+        </div>
+    </div>
+</body>
+</html>

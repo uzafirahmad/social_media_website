@@ -1,0 +1,987 @@
+@media (min-width : 1024px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: rgb(54, 57, 63);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    body{
+        margin: 0;
+        color: white;
+        background-color: rgb(66, 70, 77);
+    }
+
+    #screen{
+        z-index: 1;
+        position: absolute;
+        margin-left: 251px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        top: 61px;
+        height: calc(100vh - 61px);
+        width: calc(100vw - 263px);
+        /* overflow-x: hidden; */
+    }
+
+    #parentscreendiv{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #suggestedandtop{
+        right: 0px;
+        position: fixed;
+        height: calc(100vh - 61px);
+        background-color: rgb(47, 49, 54);
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    #postsarea{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(100vw - 563px);
+        padding: 0px 10px;
+    }
+
+    .suggestedandtoptext{
+        border-bottom: 1px solid white;
+        font-weight: bold;
+        font-size: 25px;
+        margin: 10px 0px;
+        color:white;
+    }
+
+    .suggestedandtopbuttons{
+        padding: 0px;
+        height: 60px;
+        width: 280px;
+        margin: 10px 10px;
+        background-color: rgb(66, 70, 77);
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .suggestedandtopbuttons:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .suggestedandtopbuttonfollowersandname{
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+
+    .suggestedandtopbuttonspicturediv{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        margin-right: 5px;
+        border-radius: 10px;
+    }
+
+    .suggestedandtopbuttonspicturedivpic{
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .suggestedandtopbuttonname{
+        display: flex;
+        font-size: 15px;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .suggestedandtopbuttonfollowers{
+        margin-top: 5px;
+        display: flex;
+        width: 200px;
+        font-size: 13px;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .postinhome{
+        margin: 20px 0px;
+        width: 375px;
+        background-color: rgb(47, 49, 54);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .postinhomeprofilepicture{
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+    }
+
+    .postinhomeredirectbutton{
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .postinhomeusernameandsectionname{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        height: 60px;
+        margin-left: 10px;
+    }
+
+    .highlightsubsectiondateandnumber{
+        font-size: 16px;
+        color: rgb(166, 170, 177);
+        margin: 5px;
+    }
+
+    .postinhomepostsareamasterdiv{
+        background-color: rgb(54, 57, 63);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postinhometimeofpostpostvideo{
+        height: 468.75px;
+        width: 375px;
+        margin-bottom: 5px;
+    }
+
+    .postinhometimeofpostpostpicture{
+        height: 468.75px;
+        width: 375px;
+        margin-bottom: 5px;
+    }
+
+    .postinhomepagevidandpicmasterdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postinhometimeofpost{
+        margin: 0px 5px;
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(136, 140, 147);
+        border-top: 0.5px solid rgb(76, 80, 87);
+    }
+
+    .postinhometextofpost{
+        margin-bottom: 5px;
+        margin-top: 3px;
+        display: inline-block;
+        word-wrap: break-word;
+        font-weight: bold;
+        padding: 0px 5px;
+    }
+
+    #Followsomebodytostartseeingposts{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #suggestedprofilesformobilemasterdiv{
+        display: none;
+        justify-content: center;
+        flex-direction: row;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        width: calc(100vw - 551px);
+    }
+
+    .suggestedprofileformobilebuttonimg{
+        display: none;
+        width: 50px;
+        border-radius: 5px;
+        height: 50px;
+        margin: 3px;
+    }
+    
+    .suggestedprofileformobilebutton{
+        display: none;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        height: 80px;
+        width: 80px;
+    }
+
+    #suggestedprofilesmobileviewtext{
+        display: none;
+    }
+
+    #suggestedprofilesmobileviewtext2{
+        margin-top: 20px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 375px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+}
+
+@media (min-width: 850px) and (max-width: 1023px) {
+    
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background:rgb(54, 57, 63);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    body{
+        margin: 0;
+        color: white;
+        background-color: rgb(66, 70, 77);
+    }
+
+    #screen{
+        margin: 0px;
+        top: 61px;
+        z-index: 1;
+        position: absolute;
+        height: calc(100vh - 61px);
+        width: calc(100vw - 263px);
+    }
+
+    #parentscreendiv{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #suggestedandtop{
+        right: 0px;
+        position: fixed;
+        height: calc(100vh - 61px);
+        background-color: rgb(47, 49, 54);
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    #postsarea{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(100vw - 312px);
+        /* overflow-y: scroll; */
+        padding: 0px 10px;
+    }
+
+    .suggestedandtoptext{
+        border-bottom: 1px solid white;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 10px 0px;
+        color:white;
+    }
+
+    .suggestedandtopbuttons{
+        height: 60px;
+        padding: 0px;
+        width: 280px;
+        margin: 10px 10px;
+        background-color: rgb(66, 70, 77);
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .suggestedandtopbuttons:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .suggestedandtopbuttonfollowersandname{
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+
+    .suggestedandtopbuttonspicturediv{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        margin-right: 5px;
+        border-radius: 10px;
+    }
+
+    .suggestedandtopbuttonspicturedivpic{
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .suggestedandtopbuttonname{
+        display: flex;
+        font-size: 15px;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .suggestedandtopbuttonfollowers{
+        margin-top: 5px;
+        display: flex;
+        width: 200px;
+        font-size: 13px;
+        font-weight: bold;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .postinhome{
+        margin: 20px 0px;
+        width: 500px;
+        background-color: rgb(47, 49, 54);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .postinhomeprofilepicture{
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+    }
+
+    .postinhomeredirectbutton{
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        border: none;
+        background: none;
+    }
+
+    .postinhomeusernameandsectionname{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        height: 60px;
+        margin-left: 10px;
+    }
+
+    .highlightsubsectiondateandnumber{
+        font-size: 16px;
+        color: rgb(166, 170, 177);
+        margin: 5px;
+    }
+
+    .postinhomepostsareamasterdiv{
+        background-color: rgb(54, 57, 63);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postinhometimeofpostpostvideo{
+        height: 625px;
+        width: 500px;
+        margin-bottom: 5px;
+    }
+
+    .postinhometimeofpostpostpicture{
+        height: 625px;
+        width: 500px;
+        margin-bottom: 5px;
+    }
+
+    .postinhomepagevidandpicmasterdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postinhometimeofpost{
+        margin: 0px 5px;
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: rgb(136, 140, 147);
+        border-top: 0.5px solid rgb(76, 80, 87);
+    }
+
+    .postinhometextofpost{
+        margin-bottom: 5px;
+        margin-top: 3px;
+        display: inline-block;
+        word-wrap: break-word;
+        font-weight: bold;
+        font-size: 14px;
+        padding: 0px 5px;
+    }
+
+    #Followsomebodytostartseeingposts{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #suggestedprofilesformobilemasterdiv{
+        display: none;
+        align-items: center;
+        flex-direction: row;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        width: calc(100vw - 300px);
+    }
+
+    .suggestedprofileformobilebuttonimg{
+        display: none;
+        width: 50px;
+        border-radius: 5px;
+        height: 50px;
+        margin: 3px;
+    }
+    
+    .suggestedprofileformobilebutton{
+        display: none;
+        flex-direction: column;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        height: 80px;
+        width: 80px;
+    }
+
+    #suggestedprofilesmobileviewtext{
+        display: none;
+    }
+
+    #suggestedprofilesmobileviewtext2{
+        margin-top: 20px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+
+}
+
+@media (min-width : 451px) and (max-width : 849px) {
+    
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: rgb(54, 57, 63);
+        border-radius: 5px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 5px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    body{
+        margin: 0;
+        color: white;
+        background-color: rgb(66, 70, 77);
+    }
+
+    #screen{
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+        width: calc(100vw- 12px);
+        overflow-x: hidden;
+    }
+
+    #parentscreendiv{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #suggestedandtop{
+        display: none !important;
+    }
+
+    #postsarea{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(100vw - 12px);
+    }
+
+    .postinhome{
+        margin: 7px 0px;
+        width: 400px;
+        background-color: rgb(47, 49, 54);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .postinhomeprofilepicture{
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .postinhomeredirectbutton{
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        border: none;
+        background: none;
+    }
+
+    .postinhomeusernameandsectionname{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        height: 50px;
+        margin-left: 10px;
+    }
+
+    .highlightsubsectiondateandnumber{
+        font-size: 14px;
+        color: rgb(166, 170, 177);
+        margin: 5px;
+    }
+
+    .postinhomepostsareamasterdiv{
+        background-color: rgb(54, 57, 63);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postinhometimeofpostpostvideo{
+        height: 500px;
+        width: 400px;
+        margin-bottom: 5px;
+    }
+
+    .postinhometimeofpostpostpicture{
+        height: 500px;
+        width: 400px;
+        margin-bottom: 5px;
+    }
+
+    .postinhomepagevidandpicmasterdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postinhometimeofpost{
+        margin: 0px 5px;
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 13px;
+        font-weight: bold;
+        color: rgb(136, 140, 147);
+        border-top: 0.5px solid rgb(76, 80, 87);
+    }
+
+    .postinhometextofpost{
+        margin-left: 5px;
+        margin-bottom: 5px;
+        margin-top: 3px;
+        display: inline-block;
+        word-wrap: break-word;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 0px 5px;
+    }
+
+    #Followsomebodytostartseeingposts{
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #suggestedprofilesformobilemasterdiv{
+        width: calc(100vw - 10px);
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        overflow: auto;
+        margin: 5px;
+        margin-top: 0px;
+    }
+
+    .suggestedprofileformobilebuttonimg{
+        width: 50px;
+        border-radius: 10px;
+        height: 50px;
+        margin: 3px;
+    }
+    
+    .suggestedprofileformobilebutton{
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        height: 80px;
+        width: 150px;
+        background-color: rgb(47, 49, 54);
+        border: none;
+    }
+
+    .suggestedprofileformobilebuttontxt{
+        overflow: hidden;
+        width: 150px;
+    }
+
+    #suggestedprofilesmobileviewtext{
+        margin-top: 20px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100vw - 10px);
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #suggestedprofilesmobileviewtext2{
+        margin-top: 20px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+
+}
+
+@media (max-width : 451px){
+    
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: rgb(54, 57, 63);
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    body{
+        margin: 0;
+        color: white;
+        background-color: rgb(66, 70, 77);
+    }
+
+    #screen{
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+        width: calc(100vw- 22px);
+        overflow-x: hidden;
+    }
+
+    #parentscreendiv{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #suggestedandtop{
+        display: none !important;
+    }
+
+    #postsarea{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(100vw - 10px);
+    }
+
+    .postinhome{
+        margin: 7px 0px;
+        width: 315px;
+        background-color: rgb(47, 49, 54);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .postinhomeprofilepicture{
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    .postinhomeredirectbutton{
+        cursor: pointer;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        border: none;
+        background: none;
+    }
+
+    .postinhomeusernameandsectionname{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        height: 40px;
+        margin-left: 10px;
+    }
+
+    .highlightsubsectiondateandnumber{
+        font-size: 13px;
+        color: rgb(166, 170, 177);
+        margin: 5px;
+    }
+
+    .postinhomepostsareamasterdiv{
+        background-color: rgb(54, 57, 63);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postinhometimeofpostpostvideo{
+        height: 393.75px;
+        width: 315px;
+        margin-bottom: 5px;
+    }
+
+    .postinhometimeofpostpostpicture{
+        height: 393.75px;
+        width: 315px;
+        margin-bottom: 5px;
+    }
+
+    .postinhomepagevidandpicmasterdiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .postinhometimeofpost{
+        margin: 0px 5px;
+        margin-top: 10px;
+        padding-left: 5px;
+        font-size: 12px;
+        font-weight: bold;
+        color: rgb(136, 140, 147);
+        border-top: 0.5px solid rgb(76, 80, 87);
+    }
+
+    .postinhometextofpost{
+        margin-left: 5px;
+        margin-bottom: 5px;
+        margin-top: 3px;
+        display: inline-block;
+        word-wrap: break-word;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    #Followsomebodytostartseeingposts{
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
+
+    #suggestedprofilesformobilemasterdiv{
+        width: calc(100vw - 20px);
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        overflow: auto;
+    }
+
+    .suggestedprofileformobilebuttonimg{
+        width: 50px;
+        border-radius: 10px;
+        height: 50px;
+        margin: 3px;
+    }
+    
+    .suggestedprofileformobilebutton{
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        height: 80px;
+        width: 150px;
+        background-color: rgb(47, 49, 54);
+        border: none;
+    }
+
+    .suggestedprofileformobilebuttontxt{
+        overflow: hidden;
+        width: 150px;
+    }
+
+    #suggestedprofilesmobileviewtext{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100vw - 20px);
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #suggestedprofilesmobileviewtext2{
+        margin-top: 20px;
+        margin-left: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 315px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(47, 49, 54);
+    }
+
+}

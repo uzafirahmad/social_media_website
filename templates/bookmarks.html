@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/bookmarks.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/bookmarks.js'%}" type="text/javascript"></script>
+    <title>Bookmarks</title>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="bookmarks">
+            <p id="bookmarkedprofilestext">Bookmarked Profiles</p>
+        </div>
+
+        <div id="bookmarkedbuttonsdiv">
+
+            <div class="crossandbookmarksbutton">
+                {% comment %} <button class="deletebookmarkbutton">
+                    <img id="crossimage" src="{% static 'images/cross.png'%}" alt="cross image">
+                </button>
+
+                <button id="mybookmarked" class="bookmarkedbutton">
+                    <div id="mybookmarkedprofilepicture" class="bookmarkedprofilepicturediv">
+                    </div>
+                    <div id="mybookmarkedprofilenameandfollowers" class="bookmarkedprofilenameandfollowersdiv">
+                        <div id="mybookmarkedprofilename" class="bookmarkedprofilenamediv">
+                            @Uzafir
+                        </div>
+                        <div id="mybookmarkedprofilefollowers" class="bookmarkedprofilefollowersdiv">
+                            Followers: 90
+                        </div>
+                    </div>
+                </button> {% endcomment %}
+            </div>
+               
+        </div>
+
+    </div>
+</body>
+
+</html>

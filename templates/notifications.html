@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/notifications.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/notifications.js'%}" type="text/javascript"></script>
+    <title>Notifications</title>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="bookmarks">
+            <p id="bookmarkedprofilestext">Notifications</p>
+        </div>
+        {% if notifications %}
+                <div class="bookmarkedbuttonsdiv">
+                    {% for notification in notifications %}
+                        <button class="bookmarkedbutton"
+                        {% if not notification.notification_read %}style="background-color:rgb(96, 100, 107);"{% endif %} 
+
+                        onclick="location.href='{% url 'marknotifications' username=notification.notification_username_case secname=notification.notification_sectionname_case noti_type=notification.notification_type noti_id=notification.notification_id %}';">
+
+                            <div class="bookmarkedprofilepicturediv">
+                                <img class="searchuserprofilepic" src="{{ notification.notification_image.url }}" alt="" />
+                            </div>
+                            <div class="bookmarkedprofilenameandfollowersdiv">
+                                <div class="bookmarkedprofilenamediv">
+                                    {{ notification.notification_text }}
+                                </div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+        {% else %}
+            <div id="noresultsfounddiv">No notifications</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

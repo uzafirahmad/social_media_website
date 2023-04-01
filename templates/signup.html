@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Sign up</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+	{% load static %}
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+	<link rel="stylesheet" href="{% static 'css/signup.css'%}"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="{% static 'js/signup.js'%}" type="text/javascript"></script>
+</head>
+
+<body style="margin:0">
+	<div class="left split">
+		<div onclick="window.open('https://www.instagram.com/followbesideme/', '_blank');" class="splitleftimage">
+			<img class="splitleftimage" src="{% static 'images/logo.png'%}" alt="split left image">
+		</div>
+	</div>
+	<div class="right split">
+		<div class="loginsectiondiv">
+			<div class="logintextdiv">Sign up</div>
+			<form action="/signup/" id="signupform" method="post">
+				{% csrf_token %}
+				<div class="input-container">
+					<input onkeypress="return RestrictSpace()" id="usernameinput" class="inputbox" name="username" maxlength = "30" type="text" Required>
+					<label>Username</label>
+				</div>
+
+				<div class="input-container">
+					<input class="inputbox" id="emailinput" name="email" maxlength = "60" type="text" Required>
+					<label>Email</label>
+				</div>
+
+				<div class="input-container">
+					<input class="inputbox" id="passwordinput1" name="password" maxlength = "100" type="password" Required>
+					<label>Password</label>
+				</div>
+
+				<div class="input-container">
+					<input class="inputbox" id="passwordinput2" name="confirmpassword" maxlength = "100" type="password" Required>
+					<label>Confirm Password</label>
+				</div>
+
+				<div class="confirmconditionsmasterdiv">
+					<button onclick="checkbox()" id="confirmconditionsbutton" type="button">
+						<span id="confirmconditionsbuttoncheckmark">✔</span>
+					</button>
+					<span id="confirmconditionsmasterdivtext">Do you agree to our</span>
+					<a style="margin-left: 5px;" class="linkedwords" id="tandctext" href="{% url 'termsandconditions' %}">Terms & Conditions</a>
+				</div>
+				
+				<div class="loginbuttondiv">
+					<button id="loginbuttonid" class="loginbutton" type="submit"><span id="confirmpaymentfollowbuttonspinner"></span><span id="confirmpaymentfollowbuttontext">SIGN UP</span></button>
+				</div>
+			</form>
+			<div id="ptag">
+				{{errormessage}}
+			</div>
+			<div class="linkedwords">
+				<a href="{% url 'index' %}" >Already have an account? Login</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

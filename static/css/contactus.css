@@ -1,0 +1,903 @@
+@media (min-width : 1200px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        margin-left: 251px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        top: 61px;
+        height: calc(100vh - 61px);
+        width: calc(100vw - 251px);
+    }
+
+    #settingsheaderdiv {
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 220px;
+        font-size: 21px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 19px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 35px;
+        width: 70px;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width:450px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 700px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        width: 930px;
+    }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        margin-left: 251px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        top: 61px;
+        height: calc(100vh - 61px);
+        width: calc(100vw - 251px);
+    }
+
+    #settingsheaderdiv {
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 220px;
+        font-size: 21px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 19px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 35px;
+        width: 70px;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 450px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 520px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        width: 750px;
+    }
+
+}
+
+@media (min-width: 801px) and (max-width: 1023px) {
+     
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 220px;
+        font-size: 21px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 19px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 35px;
+        width: 70px;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 350px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 550px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        width: 780px;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 800px) {
+    
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 220px;
+        font-size: 21px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 19px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 35px;
+        width: 70px;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 350px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 350px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        width: 580px;
+    }
+}
+
+@media (min-width : 451px) and (max-width : 700px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 180px;
+        font-size: 18px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 25px;
+        width: 70px;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 250px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 250px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        width: 440px;
+    }
+}
+
+
+@media (max-width : 450px){
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .changepasswordchildrendiv{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: center; */
+        /* align-items: center; */
+        margin-top: 15px;
+    }
+
+    .changepasswordchildrendivtext{
+        color: white;
+        font-weight: bold;
+        width: 50px;
+        font-size: 18px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    #changepasswordbuttonsubmit{
+        margin-left: auto;
+        margin-top: 15px;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #1d786a;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 25px;
+        width: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #changepasswordbuttonsubmit:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    .passwordinputbox{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 250px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+    }
+
+    #errormessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #succcessmessage{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: greenyellow;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .textareainput{
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        padding-left: 5px;
+        width: 250px;
+        background-color: rgb(47, 49, 54);
+        border: 1px solid rgb(106, 110, 117);
+        outline: none;
+        resize:none;
+        height: 200px;
+    }
+
+    #changepasswordbuttonsubmitdiv{
+        display: flex;
+        /* width: 440px; */
+    }
+
+    #allsettingsoptionsmasterdivchildren{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #changepasswordchildrendivtextdescs{
+        text-align: start;
+        width: 300px;
+    }
+
+}

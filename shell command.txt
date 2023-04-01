@@ -1,0 +1,3 @@
+./manage.py shell
+celery -A followbesideme beat -l info
+celery -A followbesideme worker -l info

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/search.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/search.js'%}" type="text/javascript"></script>
+    <title>Search</title>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="bookmarks">
+            <p id="bookmarkedprofilestext">Search Results</p>
+        </div>
+        {% if accounts %}
+                <div class="bookmarkedbuttonsdiv">
+                    {% for account in accounts %}
+                        <button onclick="location.href='{% url 'profile' username=account.username %}';" class="bookmarkedbutton">
+                            <div class="bookmarkedprofilepicturediv">
+                                <img class="searchuserprofilepic" src="{{ account.profile_image.url }}" alt="" />
+                            </div>
+                            <div class="bookmarkedprofilenameandfollowersdiv">
+                                <div class="bookmarkedprofilenamediv">
+                                    @{{ account.username }}
+                                </div>
+                                <div class="bookmarkedprofilefollowersdiv">
+                                    Followers: {{ account.followers }}
+                                </div>
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+        {% else %}
+            <div id="noresultsfounddiv">No results found</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

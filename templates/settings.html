@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/settings.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/settings.js'%}" type="text/javascript"></script>
+    <title>Settings</title>
+</head>
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="settingsheaderdiv">
+            <p id="mysettingstext">Settings</p>
+        </div>
+        <div id="allsettingsoptionsmasterdiv">
+            <button onclick="location.href='{% url 'changepassword' %}';" class="settingsoptionsbuttons" id="ChangePassword"><img src="{% static 'images/lock.png'%}" alt="" class="settingsbuttonsicons"/>Change Password</button>
+            <button class="settingsoptionsbuttons" id="ManageRestrictedUsers"><img src="{% static 'images/restricted.png'%}" alt="" class="settingsbuttonsicons"/>Manage Restricted Users</button>
+            <button class="settingsoptionsbuttons" id="ManageBlockedUsers"><img src="{% static 'images/block.png'%}" alt="" class="settingsbuttonsicons"/>Manage Blocked Users</button>
+            <button class="settingsoptionsbuttons" id="ManageNotifications"><img src="{% static 'images/notification.png'%}" alt="" class="settingsbuttonsicons"/>Manage Notifications</button>
+            {% comment %} <button class="settingsoptionsbuttons" id="SignOutOfAllDevices"><img src="{% static 'images/logout.png'%}" alt="" class="settingsbuttonsicons"/>Sign Out Of All Devices</button> {% endcomment %}
+            <button class="settingsoptionsbuttons" id="Cashoutbutton"><img src="{% static 'images/cashout.png'%}" alt="" class="settingsbuttonsicons"/>Cashout Earnings</button>
+        </div>
+    </div>
+</body>
+</html>

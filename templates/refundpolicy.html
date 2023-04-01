@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/policies.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <title>Refund Policy</title>
+</head>
+
+<body>
+    <div class="policiesheader">
+        <div onclick="window.open('https://www.instagram.com/followbesideme/', '_blank');" class="policiesheaderFBMtext">Follow Beside Me</div>
+        <div onclick="location.href='{% url 'home' %}';" class="policiesheaderhomeiconmasterdiv"><img class="policiesheaderhomeicon" src="{% static 'images/home.png'%}" alt="" /></div>
+    </div>
+    <div class="pagecontentsmasterdiv">
+
+    <div class="titleoftopic">Refund policy</div>
+    <div class="paragraphoftitle">Since the Website offers non-tangible, irrevocable goods we do not provide refunds after the product is purchased, which you acknowledge prior to purchasing any product on the Website. Please make sure that you’ve carefully read service description before making a purchase.</div>
+
+    <div class="titleoftopic">Contacting us</div>
+    <div class="paragraphoftitle">
+        If you have any questions, concerns, or complaints regarding this refund policy, we encourage you to contact us using the details below:
+        <br>
+        <a class="linktag" href="https://www.followbesideme.com/contactus">https://www.followbesideme.com/contactus</a>
+        <br>
+        uzafirahmad@followbesideme.com
+    </div>
+</div>
+
+</body>
+
+</html>

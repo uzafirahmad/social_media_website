@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/messages.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/messages.js'%}" type="text/javascript"></script>
+    <title>Messages</title>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div class="parentmessagesectiondiv">
+            <div id="dimscreen1">
+                
+            </div>
+            <div id="mymessagesarea" class="messagesarea">
+                <div id="mymorebuttonpopup" class="morebuttonpopup">
+                    <button onclick="closemorebuttonpop()" id="crossbuttonformorebuttonpopupbuttons"><img id="crossbuttonformorebuttonpopupbuttonsimage" src="{% static 'images/cross.png'%}" alt="cross button"></button>
+                    <button class="morebuttonpopupbuttons">Delete Chat</button>
+                    <button class="morebuttonpopupbuttons">Mute Notifications</button>
+                    <button id="restrictbuttonpopup" class="morebuttonpopupbuttons">Restrict</button>
+                    <div id="restrictpopup">
+                        <p id="restrictpopuptext">You wont see messages sent by this person</p>
+                    </div>
+                </div>
+                {%if otheruser%}
+                <script>
+                    startconversation()
+                </script>
+                {{otheruser.id|json_script:"other-user-id"}}
+                {{request.user.username|json_script:"myusername"}}
+                {% comment %} {{otheruser|json_script:"other-user"}} {% endcomment %}
+                <div id="mymessageareaheader" class="messageareaheader">
+                    <button onclick="location.href='{% url 'messages' %}';" id="messageareaheaderarrowbutton">
+                        <img id="arrowbutton" src="{% static 'images/arrow.png'%}" alt="arrow button">
+                    </button>
+                    <div class="usernamemessageareaheader">
+                        <a id="myusernamemessageareaheaderlink" class="usernamemessageareaheaderlink" href="{% url 'profile' username=otheruser.username %}">{{otheruser.username}}</a>
+                    </div>
+                    <!-- <button id="messageareaheaderfindbutton">
+                        <img id="findbutton" src="images/search.png" alt="find button">
+                        <div id="findinchat">
+                            Find in chat
+                        </div>
+                    </button>
+                    <button id="crossimagebuttonheader">
+                        <img id="crossimage" src="images/cross.png" alt="cross image">
+                    </button>
+                    <input id="findchatinput" class="findchatinput" placeholder="Find in chat" type="text"> -->
+                    <button onclick="openmorebuttonpop()" id="messageareaheadermorebutton">
+                        <img id="morebutton" src="{% static 'images/more.png'%}" alt="more button">
+                    </button>
+                </div>
+                <form id="sendmessageform" method="post">
+                    {% csrf_token %}
+                    <div id="mymessageinputdiv" class="messageinput">
+                        <input  name="message" id="mymessageinput" type="text" placeholder="Message">
+                        <button id="messageinputsendbutton">
+                            <img id="sendbutton" src="{% static 'images/send.png'%}" alt="send button">
+                        </button>
+                    </div>
+                </form>
+                <div id="mymessagespace" class="messagespace">
+                    {% for message in messages %}
+                        {% if message.sender == request.user.username %}
+                            <div id="messagesmy">{{message.message}}</div>
+                        {% else %}
+                            <div id="messagesreceived">{{message.message}}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {%else%}
+                <div id="mymessagespace2" class="messagespace2">
+                    <div id="nochatselected">
+                        Select a conversation
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+
+            <div id="myinfoarea" class="infoarea">
+                <div id="mysearcharea" class="searcharea">
+                    <button onclick="messagesearchcollapse()" id="crossimagebutton" class="searchareabuttons">
+                        <img id="crossimage" class="searchareaimages" src="{% static 'images/cross.png'%}" alt="cross image">
+                    </button>
+                    <p id="messagestext">Chats</p>
+                    <input id="mysearchchatinput" class="searchchatinput" placeholder="Search" type="text">
+                    <button onclick="messagesearchopen()" id="searchimagebutton" class="searchareabuttons">
+                        <img id="searchimage" class="searchareaimages" src="{% static 'images/search.png'%}" alt="">
+                    </button>
+                </div>
+                <div class="contactsarea">
+                    {% if followedusers %}
+                    {% for account in followedusers %}
+                    <button onclick="location.href='{% url 'startmessage' username=account.username %}';" class="contactspot">
+                        <div class="contactpicturediv">
+                            <img class="searchuserprofilepic" src="{{ account.profile_image.url }}" alt="" />
+                        </div>
+                        <div class="messageandcontactnamediv">
+                            <div id="mycontactname" class="contactname">@{{ account.username }}</div>
+                            <div id="mycontactlastmessage" class="contactlastmessage">
+                                
+                            </div>
+                        </div>
+                    </button>
+                    {% endfor %}
+                    {% else %}
+                    <div id="followtochattext">Follow somebody to start chatting</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+@media (min-width : 1024px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    * {
+        box-sizing: border-box;
+        font-family: 'Ubuntu';
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        margin-left: 251px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        top: 61px;
+        height: calc(100vh - 61px);
+        width: calc(100vw - 251px);
+    }
+
+    #settingsheaderdiv {
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settingsbuttonsicons {
+        filter: brightness(0) invert(1);
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+    .settingsoptionsbuttons {
+        white-space: nowrap;
+        height: 50px;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        width: 400px;
+        color: white;
+        font-weight: bold;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #1d786a;
+        font-size: 23px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .settingsoptionsbuttons:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    #ManageRestrictedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageBlockedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageNotifications{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+    
+    #Cashoutbutton{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+}
+
+@media (min-width: 701px) and (max-width: 1023px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settingsbuttonsicons {
+        filter: brightness(0) invert(1);
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
+
+    .settingsoptionsbuttons {
+        white-space: nowrap;
+        height: 50px;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        width: 400px;
+        color: white;
+        font-weight: bold;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #1d786a;
+        font-size: 23px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .settingsoptionsbuttons:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    #ManageRestrictedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageBlockedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageNotifications{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+    
+    #Cashoutbutton{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+}
+
+@media (max-width : 700px) {
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #40484f;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 10px;
+    }
+
+    #nav-placeholder {
+        position: absolute;
+        z-index: 999;
+    }
+
+    body {
+        margin: 0;
+        color: white;
+        background-color: rgb(54, 57, 63);
+    }
+
+    #screen {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+
+    #settingsheaderdiv {
+        width: 100vw;
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        background-color: rgb(47, 49, 54);
+    }
+
+    #mysettingstext {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    #allsettingsoptionsmasterdiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .settingsbuttonsicons {
+        filter: brightness(0) invert(1);
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+
+    .settingsoptionsbuttons {
+        white-space: nowrap;
+        height: 40px;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        width: 300px;
+        color: white;
+        font-weight: bold;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #1d786a;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .settingsoptionsbuttons:hover{
+        background-color:#29ab97;
+        transition: 0.3s;
+    }
+
+    #ManageRestrictedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageBlockedUsers{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+
+    #ManageNotifications{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+    
+    #Cashoutbutton{
+        background-color: rgb(47, 49, 54) !important;
+        cursor:default !important;
+    }
+}

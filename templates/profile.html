@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet" /> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" href="https://unpkg.com/jcrop/dist/jcrop.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/profile.css'%}" />
+    <link rel="stylesheet" href="{% static 'js/cropperjs/dist/cropper.min.css' %}">
+    <link href="http://fonts.cdnfonts.com/css/youtube-sans" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/profile.js'%}" type="text/javascript"></script>
+    {% comment %} <script type="module" src="{% static 'js/cropperjs/dist/cropper.min.js' %}"></script> {% endcomment %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js" integrity="sha512-ooSWpxJsiXe6t4+PPjCgYmVfr1NS5QXJACcR/FPpsdm6kqG1FmQ2SVyg2RXeVuCRBLr0lWHnWJP6Zs1Efvxzww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>Profile</title>
+</head>
+
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="dimscreen3"></div>
+        <div id="dimscreenoverheader"></div>
+        <input onchange="previewFile();" class="file_multi_video" accept="image/*, video/*" id="fileInput" type="file"
+            style="display: none" />
+        <input onchange="cropprofilepicture()" type="file" name="profilepicinput" id="profilepicinput" accept="image/*" style="display: none">
+        <div id="moreprofileoptionspopup">
+            <div id="moreprofileoptionsbuttonsdiv">
+                <button onclick="closeprofilemorebuttonpop()" id="moreprofileoptionscrossbutton">
+                    <img id="moreprofileoptionscrossbuttonimage" src="{% static 'images/cross.png'%}" alt="" />
+                </button>
+                <button onclick="copytoclipboard()" id="copytoclipboardbutton" class="moreprofileoptionsbuttons">Copy profile link</button>
+                <button class="moreprofileoptionsbuttons">Block</button>
+                <button class="moreprofileoptionsbuttons">Report</button>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div id="unfollowpopupmasterdiv">
+            <div id="unfollowpopupchild1div">
+                <span id="warningheaderunfollowdiv">Warning!</span>
+                <button onclick="closeunfollowwarning()" type="button" onclick="closeunfollowwarning()" id="crossunfollowmasterdivbutton">
+                    <img id="crossunfollowmasterdivimg" src="{% static 'images/cross.png'%}" alt="" />
+                </button>
+            </div>
+            <div id="unfollowwarningtext">You are about to unfollow {{users.username}}. You will no longer be charged next month if you unfollow this user. You will be removed from the follower list of {{user.username}} immediately upon unfollowing and will have to pay the follow fee again if you wish to re-subscribe. <b style="color:white">Are you sure you want to unfollow?</b></div>
+            <button type="button" id="confirmunfollowbutton" onclick="location.href='{% url 'unfollow' username=users.username %}';">Confirm Unfollow</button>
+        </div>
+        {% endif %}
+        <div id="paytofollowpopupmasterdiv">
+            <button type="button" onclick="closefollowuserpopup()" id="crossconfirmpaymentfollowmasterdiv">
+                <img id="crossconfirmpaymentfollowmasterdivimg" src="{% static 'images/cross.png'%}" alt="" />
+            </button>
+            <form action="{% url 'followuser' username=users.username %}" id="payment-form" method="post">
+                {% csrf_token %}
+                <div id="youareabouttofollowtext">You are about to follow <b style="color:white">{{users.username}}</b> for <b style="color:white">${{users.follow_fee}}/month</b></div>
+                <div class="input-container">
+                    <input name="fullname" type="text" required=""/>
+                    <label>Full Name</label>		
+                </div>
+                <div id="cardinput">
+                    <!-- Stripe will display card element here -->
+                </div>
+                <div id="card-errors">
+                    <!-- Display error message to your customers here -->
+                </div>
+                <button type="submit" onclick="submitcardpaymenttostripe()" id="confirmpaymentfollowbutton"><span id="confirmpaymentfollowbuttonspinner"></span><span id="confirmpaymentfollowbuttontext">Follow</span></button>
+            </form>
+        </div>
+        <div id="helpsetupprofilepopup">
+            <button onclick="closeprofilesetuphelppopup()" id="crossbuttonforprofilesetuphelp">
+                <img id="crossbuttonforprofilesetuphelpimage" src="{% static 'images/cross.png'%}" alt="cross" />
+            </button>
+            <div id="gotoinstagramtext">
+                All the posts on this profile are shown in {{users.username}}'s time zone so that you can see their routines accurately.
+            </div>
+        </div>
+        <div id="helpsetupprofilepopup2">
+            <button onclick="closeprofilesetuphelppopup2()" id="crossbuttonforprofilesetuphelp">
+                <img id="crossbuttonforprofilesetuphelpimage" src="{% static 'images/cross.png'%}" alt="cross" />
+            </button>
+            <div id="gotoinstagramtext">
+                Posting-Areas older than 7 days are deleted whenever a new post-area is added. This is to ensure the latest routines are shown and there is no cluster of outdated uploads.
+            </div>
+        </div>
+        <div id="displayuploadedprofilepic">
+            <div id="displayuploaddedprofilepiccrossbuttonmasterdiv">
+                <button onclick="closedisplayuploadedprofilepic()" id="displayuploaddedprofilepiccrossbutton">
+                    <img id="displayuploaddedprofilepiccrossbuttonimage" src="{% static 'images/cross.png'%}" alt="" />
+                </button>
+            </div>
+            <img id="displayuploadedprofilepiccontainer" src="" alt=""/>
+            <button onclick="saveuploadedprofilepic()" id="displayuploaddedprofilepicsavebutton">
+                Save
+            </button>
+        </div>
+        {% if viewsection %}
+        <div id="confirmdeletesection">
+            <button onclick="closeconfirmdeletesection()" id="crossbuttonfordeletesec">
+                <img id="crossbuttonfordeletesecimage" src="{% static 'images/cross.png'%}" alt="cross" />
+            </button>
+            <div id="confirmdeletesectionwarningtext">Warning!</div>
+            <div id="deletesectionwarning">
+                You are about to delete this section. Are you sure you want to
+                section?
+            </div>
+            <div id="deletesubsectionwarning">
+                You are about to delete this sub-section. Are you sure you want to
+                sub-section?
+            </div>
+            <button onclick="location.href='{% url 'deletesection' secname=currentsection.section_name %}';" id="yesimsuredeletesecbutton">Yes i'm sure</button>
+            <button onclick="deletesubsectionfunc()" id="yesimsuredeletesecbutton2">Yes i'm sure</button>
+        </div>
+        {%endif%}
+        <div id="addsectionpopup">
+            <div id="moreprofileoptionsbuttonsdiv">
+                <button onclick="closeaddsectionpopup()" id="addsectionpopupsubdivscrossbutton">
+                    <img id="addsectionpopupsubdivscrossbuttonimage" src="{% static 'images/cross.png'%}" alt="cross" />
+                </button>
+                <form action="{% url 'addsection' %}" method="post">
+                    {% csrf_token %}
+                    <div class="addsectionpopupsubdivs">
+                        <div class="addsectionpopupsubdivstexts">Name:</div>
+                        <input name="sectionname" id="addsectionpopupsubdivsinput" type="text" />
+                    </div>
+                    <div class="addsectionpopupsubdivs">
+                        <div class="addsectionpopupsubdivstexts">Viewable to:</div>
+                        <select id="addsectionselectviewable" name="viewableselect">
+                            <option value="Only followers">Only followers</option>
+                            <option value="Everyone" selected>Everyone</option>
+                        </select>
+                    </div>
+                    <div class="addsectionpopupsubdivs">
+                        <div class="addsectionpopupsubdivstexts">Description:</div>
+                        <textarea id="addsectionpopupsubdivstextarea" name="sectiondescription" id="" cols="30" rows="1"></textarea>
+                    </div>
+                    <div id="profilepageheaderaddsectionbuttonpopupdiv">
+                        <button type="submit" onclick="closeaddsectionpopup()" id="profilepageheaderaddsectionbuttonpopup">
+                            <img id="addsectionbuttonplusimage" src="{% static 'images/plus.png'%}" alt="plus" />Add Section</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="profilepageheader">
+            <div id="profilepageheaderpicnamefollowers">
+                <div id="profilepictureslotdiv">
+                    {% if is_self %}
+                    <button onclick="document.getElementById('profilepicinput').click();" id="profilepictureslot">
+                        <img id="userprofilepic" src="{{ users.profile_image.url }}" alt="" />
+                        {% if is_self %}
+                        <img id="profilepicturesloteditpicture" src="{% static 'images/camera.png'%}" alt="" />
+                        {% endif %}
+                    </button>
+                    {% else %}
+                    <div id="profilepictureslot">
+                        <img id="userprofilepic" src="{{ users.profile_image.url }}" alt="" />
+                        {% if is_self %}
+                        <img id="profilepicturesloteditpicture" src="{% static 'images/camera.png'%}" alt="" />
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div id="profilepageheaderusernamefollowersmorebuttonmasterdiv">
+                    <div id="profilepageheaderusernameandfollowers">
+                        <div id="profilepageheaderusername">@{{ users.username }}</div>
+                        <div id="profilepageheaderusernameeditdiv">
+                            @
+                            {% if is_self  %}<form id="savechangesform" method="post" action="{% url 'editprofile' saveuser=user.username %}">{% endif %}
+                                {% csrf_token %}
+                            <input id="profilepageheaderusernameedit" name="usernameedit" type="text" placeholder="Username" maxlength="30" />
+                        </div>
+                        <div id="profilepageheaderfollowersandsubscriptioncost">
+                            <div id="profilepageheaderfollowers">Followers: <b style="color:white;margin-left:4px" id="profilepageheaderfollowersbold">{{ users.followers }}</b></div>
+                            <div id="profilepageheadersubscriptionfeeandinputdiv">
+                                <div id="profilepageheadersubscriptionfee">Follow fee:<b style="color:white;margin-left:4px" id="profilepageheadersubscriptionfeebold">${{ users.follow_fee }}</b></div>
+                                <div id="profilepageheadersubscriptionfeeedit">
+                                    Follow fee: <b style="color:white;margin-left:4px">$</b>
+                                    <input name="profilepageheadersubscriptionfeeeditinput" type="number" id="profilepageheadersubscriptionfeeeditinput" maxlength="3" />
+                                </div>
+                            </div>
+                            <button type="button" onclick="profilesetuppopup()" id="profileheaderhelpinsettingprofilebutton">
+                                <img id="profileheaderhelpinsettingprofilebuttonimage" src="{% static 'images/help and support.png'%}" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                    {% comment %} {% if not is_self %}
+                    <div id="profilepageheadermorebuttondiv">
+                        <button type="button" onclick="openprofilemorebuttonpopup()" id="profilepageheadermorebutton">
+                            <img id="profilepageheadermorebuttonpicture" src="{% static 'images/more.png'%}" alt="" />
+                        </button>
+                    </div>
+                    {% endif %} {% endcomment %}
+                </div>
+            </div>
+            <div id="profilepageheaderissubscribedanderrormessages">
+                <div id="profilepageheadererrormessages">{{errormessage}}</div>
+                {% if not is_self %}
+                {% if is_follower %}
+                <div id="profilepageheaderissubscribed">
+                    <img id="profilepageheaderissubscribedimage" src="{% static 'images/check.png'%}" alt="check" />Followed
+                </div>
+                {% endif %}
+                {% endif %}
+                <div id="editprofiletimezoneeditdiv">
+                    <div id="editprofiletimezoneedittexts">Profile timezone: {{ users.timezone }}</div>
+                    <select id="addsectionpopupsubdivsselect" name="timezone">
+                        <option selected disabled>Select Timezone</option>
+                        <option value="GMT-12:00">
+                            (GMT-12:00) International Date Line West
+                        </option>
+                        <option value="GMT-11:00">
+                            (GMT-11:00) Midway Island, Samoa
+                        </option>
+                        <option value="GMT-10:00">(GMT-10:00) Hawaii</option>
+                        <option value="GMT-09:00">(GMT-09:00) Alaska</option>
+                        <option value="GMT-08:00">
+                            (GMT-08:00) Pacific Time (US & Canada)
+                        </option>
+                        <option value="America/Tijuana">
+                            (GMT-08:00) Tijuana, Baja California
+                        </option>
+                        <option value="GMT-07:00">(GMT-07:00) Arizona</option>
+                        <option value="GMT-07:00">
+                            (GMT-07:00) Chihuahua, La Paz, Mazatlan
+                        </option>
+                        <option value="GMT-07:00">
+                            (GMT-07:00) Mountain Time (US & Canada)
+                        </option>
+                        <option value="GMT-06:00">
+                            (GMT-06:00) Central America
+                        </option>
+                        <option value="GMT-06:00">
+                            (GMT-06:00) Central Time (US & Canada)
+                        </option>
+                        <option value="GMT-06:00">
+                            (GMT-06:00) Guadalajara,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...Monterrey, Mexico City)
+                        </option>
+                        <option value="GMT-06:00">
+                            (GMT-06:00) Saskatchewan
+                        </option>
+                        <option value="GMT-05:00">
+                            (GMT-05:00) Bogota, Lima, Quito, Rio Branco
+                        </option>
+                        <option value="GMT-05:00">
+                            (GMT-05:00) Eastern Time (US & Canada)
+                        </option>
+                        <option value="GMT-05:00">
+                            (GMT-05:00) Indiana (East)
+                        </option>
+                        <option value="GMT-04:00">
+                            (GMT-04:00) Atlantic Time (Canada)
+                        </option>
+                        <option value="GMT-04:00">
+                            (GMT-04:00) Caracas, La Paz
+                        </option>
+                        <option value="GMT-04:00">(GMT-04:00) Manaus</option>
+                        <option value="GMT-04:00">(GMT-04:00) Santiago</option>
+                        <option value="GMT-03:30">
+                            (GMT-03:30) Newfoundland
+                        </option>
+                        <option value="GMT-03:00">(GMT-03:00) Brasilia</option>
+                        <option value="GMT-03:00">
+                            (GMT-03:00) Buenos Aires, Georgetown
+                        </option>
+                        <option value="GMT-03:00">(GMT-03:00) Greenland</option>
+                        <option value="GMT-03:00">(GMT-03:00) Montevideo</option>
+                        <option value="GMT-02:00">(GMT-02:00) Mid-Atlantic</option>
+                        <option value="GMT-01:00">
+                            (GMT-01:00) Cape Verde Is.
+                        </option>
+                        <option value="GMT-01:00">(GMT-01:00) Azores</option>
+                        <option value="GMT+00:00">
+                            (GMT+00:00) Casablanca, Monrovia,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(... Reykjavik)
+                        </option>
+                        <option value="GMT+00:00">
+                            (GMT+00:00) Greenwich Mean Time :
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...Dublin, Edinburgh, Lisbon, London)
+                        </option>
+                        <option value="GMT+01:00">
+                            (GMT+01:00) Amsterdam, Berlin, Bern
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...Rome, Stockholm, Vienna)
+                        </option>
+                        <option value="GMT+01:00">
+                            (GMT+01:00) Belgrade, Bratislava, Budapest,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...Ljubljana, Prague)
+                        </option>
+                        <option value="GMT+01:00">
+                            (GMT+01:00) Brussels, Copenhagen, Madrid,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(... Paris)
+                        </option>
+                        <option value="GMT+01:00">
+                            (GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb
+                        </option>
+                        <option value="GMT+01:00">
+                            (GMT+01:00) West Central Africa
+                        </option>
+                        <option value="GMT+02:00">(GMT+02:00) Amman</option>
+                        <option value="GMT+02:00">
+                            (GMT+02:00) Athens, Bucharest, Istanbul
+                        </option>
+                        <option value="GMT+02:00">(GMT+02:00) Beirut</option>
+                        <option value="GMT+02:00">(GMT+02:00) Cairo</option>
+                        <option value="GMT+02:00">
+                            (GMT+02:00) Harare, Pretoria
+                        </option>
+                        <option value="GMT+02:00">
+                            (GMT+02:00) Helsinki, Kyiv, Riga,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(... Sofia, Tallinn, Vilnius)
+                        </option>
+                        <option value="GMT+02:00">(GMT+02:00) Jerusalem</option>
+                        <option value="GMT+02:00">(GMT+02:00) Minsk</option>
+                        <option value="GMT+02:00">(GMT+02:00) Windhoek</option>
+                        <option value="GMT+03:00">
+                            (GMT+03:00) Kuwait, Riyadh, Baghdad
+                        </option>
+                        <option value="GMT+03:00">
+                            (GMT+03:00) Moscow, St. Petersburg,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...Volgograd)
+                        </option>
+                        <option value="GMT+03:00">(GMT+03:00) Nairobi</option>
+                        <option value="GMT+03:00">(GMT+03:00) Tbilisi</option>
+                        <option value="GMT+03:30">(GMT+03:30) Tehran</option>
+                        <option value="GMT+04:00">(GMT+04:00) Abu Dhabi, Muscat</option>
+                        <option value="GMT+04:00">(GMT+04:00) Baku</option>
+                        <option value="GMT+04:00">(GMT+04:00) Yerevan</option>
+                        <option value="GMT+04:30">(GMT+04:30) Kabul</option>
+                        <option value="GMT+05:00">
+                            (GMT+05:00) Yekaterinburg
+                        </option>
+                        <option value="GMT+05:00">
+                            (GMT+05:00) Islamabad, Karachi, Tashkent
+                        </option>
+                        <option value="GMT+05:30">
+                            (GMT+05:30) Chennai, Kolkata, Mumbai,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...New Delhi)
+                        </option>
+                        <option value="GMT+05:30">
+                            (GMT+05:30) Sri Jayawardenapura
+                        </option>
+                        <option value="GMT+05:30">(GMT+05:45) Kathmandu</option>
+                        <option value="GMT+06:00">
+                            (GMT+06:00) Almaty, Novosibirsk
+                        </option>
+                        <option value="GMT+06:00">(GMT+06:00) Astana, Dhaka</option>
+                        <option value="GMT+06:30">(GMT+06:30) Yangon (Rangoon)</option>
+                        <option value="GMT+07:00">
+                            (GMT+07:00) Bangkok, Hanoi, Jakarta
+                        </option>
+                        <option value="GMT+07:00">(GMT+07:00) Krasnoyarsk</option>
+                        <option value="GMT+08:00">
+                            (GMT+08:00) Beijing, Chongqing,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(... Hong Kong, Urumqi)
+                        </option>
+                        <option value="GMT+08:00">
+                            (GMT+08:00) Kuala Lumpur, Singapore
+                        </option>
+                        <option value="GMT+08:00">
+                            (GMT+08:00) Irkutsk, Ulaan Bataar
+                        </option>
+                        <option value="GMT+08:00">(GMT+08:00) Perth</option>
+                        <option value="GMT+08:00">(GMT+08:00) Taipei</option>
+                        <option value="GMT+09:00">
+                            (GMT+09:00) Osaka, Sapporo, Tokyo
+                        </option>
+                        <option value="GMT+09:00">(GMT+09:00) Seoul</option>
+                        <option value="GMT+09:00">(GMT+09:00) Yakutsk</option>
+                        <option value="GMT+09:30">(GMT+09:30) Adelaide</option>
+                        <option value="GMT+09:30">(GMT+09:30) Darwin</option>
+                        <option value="GMT+10:00">(GMT+10:00) Brisbane</option>
+                        <option value="GMT+10:00">
+                            (GMT+10:00) Canberra, Melbourne, Sydney
+                        </option>
+                        <option value="GMT+10:00">(GMT+10:00) Hobart</option>
+                        <option value="GMT+10:00">
+                            (GMT+10:00) Guam, Port Moresby
+                        </option>
+                        <option value="GMT+10:00">(GMT+10:00) Vladivostok</option>
+                        <option value="GMT+11:00">
+                            (GMT+11:00) Magadan, Solomon Is.,
+                        </option>
+                        <option disabled style="font-style: italic; color: rgb(166, 170, 177)">
+                            &nbsp;&nbsp;&nbsp;(...New Caledonia)
+                        </option>
+                        <option value="GMT+12:00">
+                            (GMT+12:00) Auckland, Wellington
+                        </option>
+                        <option value="GMT+12:00">
+                            (GMT+12:00) Fiji, Kamchatka, Marshall Is.
+                        </option>
+                        <option value="GMT+13:00">(GMT+13:00) Nuku'alofa</option>
+                    </select>
+                </div>
+            </div>
+            <div name="userbio" id="profilepageheaderinfoarea">{{ users.biodescription }}</div>
+            {% comment %} <form class="savechangesform" method="post" action="{% url 'editprofile' saveuser=user.email %}">
+                {% csrf_token %}  {% endcomment %}
+                <div contenteditable="true" spellcheck="false" id="profilepageheaderinfoareaedit"></div>
+                <textarea name="profilepageheaderinfoareaeditu" id="my-textarea" style="display:none"></textarea>
+            {% if is_self %}</form>{% endif %}
+            <div id="profilepageheaderaddseceditprofileseemore">
+                <div id="profileheaderseemorebuttondiv">
+                    <button onclick="seemoreinfo()" id="profileheaderseemorebutton">See more</button>
+                </div>
+                <div id="profilepageheaderaddsectionandeditprofilebuttondiv">
+                    {% if is_self %}
+                    <button onclick="openaddsectiondiv()" id="profilepageheaderaddsectionbutton">
+                        <img id="addsectionbuttonplusimage" src="{% static 'images/plus.png'%}" alt="plus" />Add Section
+                    </button>
+                    <button type="button" onclick="opencloseeditprofile()" id="profilepageheadereditprofilebutton">
+                        <img id="editprofilebuttoneditimage" src="{% static 'images/edit.png'%}" alt="edit" />Edit Profile
+                    </button>
+                    <button onclick="submitallforms()" id="profilepageheadersaveprofilebutton">
+                        <img id="editprofilebuttoneditimage" src="{% static 'images/check.png'%}" alt="edit" />
+                        <div id="editprofiletextdiv">Save Changes</div>
+                    </button>
+                        <button onclick="reloadpage()" id="profilepageheadercanceleditbutton">
+                            <img id="profilepageheadercanceleditbuttonimage" src="{% static 'images/cross.png'%}" alt="cross" />Cancel
+                            Edit
+                        </button>
+                    {% else %}
+                    {% if not is_follower %}
+                    <button onclick="openfollowuserpopup()" id="profilepageheadersubscribebutton">
+                        <img id="editprofilebuttoneditimage" src="{% static 'images/subscribe.png'%}" alt="plus"/>Follow
+                    </button>
+                    {% endif %}
+                    {% if is_follower %}
+                    <button onclick="location.href='{% url 'startmessage' username=users.username %}';" id="profilepageheadermessagebutton">
+                        <img id="editprofilebuttoneditimage" src="{% static 'images/messages.png'%}" alt="plus"/>Message
+                    </button>
+                    <button type="button" onclick="openunfollowwarning()" id="profilepageheaderunfollowbutton">
+                        <img id="editprofilebuttoneditimage" src="{% static 'images/unfollow.png'%}" alt="plus"/>Unfollow
+                    </button
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="profilepagefooter">
+            <div id="dimscreenoverfooter"></div>
+            <div id="profilepagefooterheadings">
+                {% if sections %}
+                    {% for section in sections %}
+                        <button onclick="location.href='{% url 'viewsection' username=users.username secname=section.section_name %}';" class="profilepagefootersectionsbuttons">{{section.section_name}}</button>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div id="profilepagefootercontents">
+                {% if viewsection %}
+                    <div id="profilepagefootercontentssectiontitlemaster">
+                        <div id="profilepagefootercontentssectiontitle">{{currentsection.section_name}}</div>
+                        <div id="profilepagefootercontentssectionviewabletotext">Viewable to: <b id="profilepagefootercontentssectionviewabletotextbold" style="color:white">{{currentsection.viewable_to}}</b></div>
+                    </div>
+                    <form id="editsectionform" action="{% url 'editsection' secname=currentsection.section_name %}" method="post">
+                        {% csrf_token %}
+                        <div id="profilepagefootercontentsviewableselectandrenamesectionmasterdiv">
+                            <div id="profilepagefootercontentsrenamechilddiv">
+                                <div class="profilepagefootercontentsviewableselectchilddivtext">
+                                    Section name:
+                                </div>
+                                <input name="sectionname" id="profilepagefootercontentsviewableselectchilddivinput" type="text" />
+                            </div>
+                            <div id="profilepagefootercontentsviewableselectchilddiv">
+                                <div class="profilepagefootercontentsviewableselectchilddivtext">
+                                    Viewable to:
+                                </div>
+                                <select id="profilepagefootercontentsviewableselect" name="viewableselect">
+                                    <option value="Only followers">Only followers</option>
+                                    <option value="Everyone">Everyone</option>
+                                </select>
+                            </div>
+                        </div>
+                        {% if currentsection.viewable_to == "Only followers" and is_follower or currentsection.viewable_to == "Everyone" %}
+                        <div id="profilepagefootercontentsdescriptionheadingtext">
+                            <div id="profilepagefootercontentsdescriptionheadingtextspan">
+                            {% if currentsection.sec_description %}
+                            Section Description
+                            {% endif %}
+                            </div>
+                            {% if subsections %}
+                            <button onclick="openprofilesetuphelppopup2()" type="button" id="profilepagefootercontentsdescriptionheadingtexthelpandsupportbutton">
+                                <img id="profilepagefootercontentsdescriptionheadingtexthelpandsupportbuttonimg" src="{% static 'images/help and support.png'%}" alt="" />
+                            </button>
+                            {% endif %}
+                        </div>
+                        <div id="profilepagefootercontentsdescriptioninfo">{{currentsection.sec_description}}</div>
+                        <div contenteditable="true" spellcheck="false" name="profilepagefooterdescriptionareaedit"
+                            id="profilepagefooterdescriptionareaedit"></div>
+                        <button type="button" onclick="seemoredescription()" id="profilepagefootercontentseemoredescriptionbutton">See more</button>
+                        <textarea name="profilepagefootercontentsdescriptioninfotextarea" id="profilepagefootercontentsdescriptioninfotextarea" style="display:none;"></textarea> 
+                    <div id="profilepagefootertopbuttonsdiv">
+                        {% if is_self %}
+                        <button type="button" onclick="editsectionfunc()" id="profilepagefootertopbuttonseditsectionbutton">
+                            <img id="profilepagefootertopbuttonseditsectionbuttonimage" src="{% static 'images/edit.png'%}" alt="" />Edit
+                            Section
+                        </button>
+                        <button type="button" onclick="submiteditsection()" id="profilepagefootertopbuttonssavechangesbutton">
+                                <img id="profilepagefootertopbuttonssavechangesbuttonimage" src="{% static 'images/check.png'%}"
+                                    alt="" />Save Changes
+                        </button>
+                        <button type="button" onclick="reloadpage()" id="profilepagefootertopcanceleditbutton">
+                                <img id="profilepagefootertopcanceleditbuttonimage" src="{% static 'images/cross.png'%}"
+                                    alt="cross" />Cancel Edit
+                        </button>
+                        <button onclick="location.href='{% url 'addsubsection' secname=currentsection.section_name %}';" type="button" id="profilepagefootertopbuttonsaddsubsectionbutton">
+                            <img id="profilepagefootertopbuttonsaddsubsectionbuttonimage" src="{% static 'images/plus.png'%}" alt="" />
+                            Add Post-Area
+                        </button>
+                        <button type="button" onclick="deletesection()" id="profilepagefootertopbuttonsdeletesectionbutton">
+                            <img id="profilepagefootertopbuttonsdeletesectionbuttonimage" src="{% static 'images/cross.png'%}"
+                                alt="" />Delete Section
+                        </button>
+                        {% endif %}
+                    </div>   
+                    </form>
+                    {% comment %} {% if is_self == None %}<div id="nosectionscurrentlyinviewtext">somebody else</div>{%else%}<div id="nosectionscurrentlyinviewtext">is self</div>{% endif %} {% endcomment %}
+                    
+                        {% if subsections %}
+                        {% load index %}
+                        {% for subsection in subsections reversed %}
+                        <div class="profilepagefootercontentssubsectionmasterdiv">
+                            <div class="profilepagefootercontentssubsection">
+                                <button onclick="deletesubsection()" class="profilepagefootercontentssubsectioncrossbutton">
+                                    <img class="profilepagefootercontentssubsectioncrossbuttonimage" src="{% static 'images/cross.png'%}"
+                                        alt="cross" />
+                                </button>
+                                <div class="profilepagefootercontentssubsectionheaderdiv">
+                                    <div class="profilepagefootercontentssubsectionheaderplussigndiv">
+                                        <img class="profilepagefootercontentssubsectionheaderplussign" src="{% static 'images/plus.png'%}"alt="plus" />
+                                        <img class="profilepagefootercontentssubsectionheaderminussign" src="{% static 'images/minus.png'%}"alt="minus" />
+                                    </div>
+                                    <div class="profilepagefootercontentssubsectionheadernumberanddate">
+                                        <div class="profilepagefootercontentssubsectionheaderdate">{{subsection.subsection_add_date}}</div>
+                                        <div class="profilepagefootercontentssubsectionheadernumber">Post-Area {{subsection.subsection_serial}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profilepagefootercontentssubsectionpostsmasterdiv">
+                                <div class="profilepagefootercontentssubsectionpostschildrendiv">
+                                    {% if is_self %}
+                                    <form method="post" id="addnewpostform" action="">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                    <div class="profilepagefootercontentssubsectioncreatepostmasterdiv">
+                                        <div class="profilepagefootercontentssubsectioncreatepostheading">
+                                            Create Post
+                                        </div>
+                                        <div spellcheck="false" class="profilepagefootercontentsubsectionedittablediv" contenteditable="true"></div>
+                                        <div class="uploadedimagecontainer">
+                                            <img name="postimg" class="previewImg" src="" alt=""/>
+                                        </div>
+                                        <video name="postvid" class="uploadedvideocontainer" style="display: none" controls autoplay>
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <div class="profilepagefootercontentsubsectionattachimageandpostbutton">
+                                            <button type="button" onclick="document.getElementById('fileInput').click();"
+                                                class="profilepagefootercontentsubsectionattachimagebutton">
+                                                <img class="profilepagefootercontentsubsectionattachimagebuttonimage"
+                                                    src="{% static 'images/gallery.png'%}" alt="" />
+                                            </button>
+                                            <button type="button" class="profilepagefootercontentsubsectiondeleteattachments">
+                                                Delete Attachements
+                                            </button>
+                                            <button type="button" class="profilepagefootercontentsubsectionpostbutton">
+                                                Post
+                                            </button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                    {% endif %}
+                                    {% with posts|index:forloop.revcounter0 as tempost %}
+                                    {% if tempost %}
+                                    {% for subpost in tempost reversed%}
+                                    <div class="profilepagefootercontentssubsectionsubmittedpostsmasterdiv">
+                                        <div class="profilepagefootercontentssubsectionsubmittedpostschildrendiv">
+                                            <div class="profilepagefootercontentssubsectionsubmittedpostschildrendivbuttondivbuttonmasterdiv">
+                                                <div class="profilepagefootercontentssubsectionsubmittedpoststimeandbuttonmaster">
+                                                    <div class="profilepagefootercontentssubsectionsubmittedpoststimediv">{{subpost.post_time}}</div>
+                                                    {% if is_self %}
+                                                    <div  style="display: none" class="profilepagefootercontentssubsectionsubmittedpoststimedivhash">{{subpost.post_hash}}</div>
+                                                    <button class="profilepagefootercontentssubsectionsubmittedpostschildrendivbuttondivbutton">Delete Post</button>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="profilepagefootercontentssubsectionsubmittedpostschildrendivchildrentext">{{subpost.post_text}}</div>
+                                            {% if subpost.post_image %}<div class="centealignthepostsandvideo"><img src="{{subpost.post_image.url}}" alt="" class="profilepagefootercontentssubsectionsubmittedpostschildrendivchildrenimg"/></div>{% endif %}
+                                            {% if subpost.post_video %}<div class="centealignthepostsandvideo"><video src="{{subpost.post_video.url}}" controls class="profilepagefootercontentssubsectionsubmittedpostschildrendivchildrenvideo"></video></div>{% endif %}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                    {% if not is_self %}
+                                    <div class="profilepagefootercontentssubsectionnopoststoshowtext">No posts to show</div>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% if not is_self %}
+                        <div id="nosectionscurrentlyinviewtext">{{users.username}} hasn't made any posts in this section yet</div>
+                        {% else %}
+                        <div id="nosectionscurrentlyinviewtext">You haven't made any posts in this section yet</div>
+                        {% endif %}
+                        {% endif %}
+                    {% else %}
+                    <div id="nosectionscurrentlyinviewtext">Follow user to view this section</div>
+                    {% endif %}
+                {% else %}
+                <div id="nosectionscurrentlyinviewtext">No section currently in view</div>
+                {% if is_self %} {% if sections %} <div id="nosectionscurrentlyinviewtext">Click the {% for section in sections %}{{section.section_name}} section, {% endfor %} to create a post in it</div>{% endif %}{% endif %}
+                {% if not is_self %} {% if sections %} <div id="nosectionscurrentlyinviewtext">Click the {% for section in sections %}{{section.section_name}} section, {% endfor %} to view posts in it</div>{% endif %}{% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+{% if is_self %}
+    {% if yesyesterday %}
+        {{yesyesterday|json_script:"yesyesterday"}}
+    {% endif %}
+{% endif %}
+
+{{publishablekey|json_script:"publishablekey"}}
+{{paymentintent|json_script:"client_secret"}}
+{{checkout_session|json_script:"checkout_session"}}

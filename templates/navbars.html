@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+        <link rel="stylesheet" href="{% static 'css/navbars.css'%}" />
+        <link href="http://fonts.cdnfonts.com/css/youtube-sans" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script src="{% static 'js/navbars.js'%}" type="text/javascript"></script>
+        <title>Navbars</title>
+</head>
+
+<body id="navscreen">
+        <div id="dimscreen">
+        </div>
+        <div id="myheadernavbar" class="headernavbar">
+                <div class="leftheader">
+                        <div class="FollowBesideMetext" onclick="window.open('https://www.instagram.com/followbesideme/', '_blank');">Follow Beside Me</div>
+                        <button onclick="openclose()" class="iconbuttons"><img class="leftheadericons" src="{% static 'images/menu.png'%}"></button>
+                        <button onclick="location.href='{% url 'home' %}';" class="iconbuttons"><img class="leftheadericons" src="{% static 'images/home.png'%}"></button>
+                        <button onclick="window.open('https://www.instagram.com/followbesideme/', '_blank');" class="iconbuttons"><img class="leftheadericons" src="{% static 'images/instagram.png'%}"></button>
+                </div>
+                {% if user.is_authenticated %}
+                <form action="{% url 'search' %}" method="get">
+                <div class="middleheader">
+                        <input name="searchquery" id="searchbarinput" type="text" placeholder="Search">
+                        <button type="submit" class="searchbutton"><img class="searchbuttonimg" src="{% static 'images/search.png'%}" alt="search button"></button>
+                </div>
+                </form>
+                <div class="rightheader">
+                        <button type="button" onclick="location.href='{% url 'notifications' %}';" class="righticons">
+                                <img class="rightheadericons" src="{% static 'images/notification.png'%}">
+                                <img class="rightheadericons" style="display:none" src="{% static 'images/notificationunread.png'%}">
+                        </button>
+                        <button onclick="opencloselogoutpopup()" class="righticons">
+                                {% if request.user.profile_image %}
+                                <img id="profilepictureiconheadernavbar" src="{{ request.user.profile_image.url }}" >
+                                {% else %}
+                                <img id="profilepictureiconheadernavbar" src="{% static 'images/temp.png'%}" >
+                                {% endif %}
+                        </button>
+                </div>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <div onclick="location.href='{% url 'index' %}';" id="pageheaderatagfornotauthdiv">Log in</div>
+                {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <div id="mylogoutpopup" class="logoutpopup">
+                <div id="myviewprofilediv" class="viewprofilediv">
+                        <button onclick="location.href='{% url 'viewprofilef' username=request.user.username %}';" id="viewprofilebutton" type="button" class="popupbuttons">
+                                <img id="viewprofileicon" class="popupdivicons" src="{% static 'images/viewprofile.png'%}"
+                                        alt="viewprofile button">
+                                <div id="viewprofiletext" name="viewprofile" class="popupdivtext">View Profile</div>
+                        </button>
+                </div>
+                <div id="mylogutdiv" class="logutdiv">
+                        <button onclick="location.href='{% url 'signout' %}';" id="logoutbutton" type="button" class="popupbuttons">
+                                <img id="logouticon" class="popupdivicons" src="{% static 'images/logout.png'%}" alt="logout button">
+                                <div id="logouttext" class="popupdivtext">Logout</div>
+                        </button>
+                </div>
+        </div>
+        {% endif %}
+        <div id="mysidebar" class="sidebar">
+                <button type="button" onclick="location.href='{% url 'home' %}';" id="homebutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/home.png'%}" alt="home button">
+                        <div id="hometext" class="sidebartext">Home</div>
+                </button>
+                <button type="button" onclick="location.href='{% url 'messages' %}';" id="messagebutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/messages.png'%}" alt="message button">
+                        <div id="messagetext" class="sidebartext">Messages</div>
+                </button>
+                <button type="button" onclick="location.href='{% url 'bookmarks' %}';" id="bookmarksbutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/bookmarks.png'%}" alt="bookmark button">
+                        <div id="bookmarkstext" class="sidebartext">Bookmarks</div>
+                </button>
+                <button type="button" onclick="location.href='{% url 'following' %}';" id="followingbutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/following.png'%}" alt="followingbutton">
+                        <div id="followingtext" class="sidebartext">Following</div>
+                </button>
+                <button type="button" onclick="location.href='{% url 'settings' %}';" id="settingsbutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/settings.png'%}" alt="settings button">
+                        <div id="settingstext" class="sidebartext">Settings</div>
+                </button>
+                <button type="button" onclick="location.href='{% url 'helpandsupport' %}';" id="helpandsupportbutton" class="sideiconbuttons">
+                        <img class="navicons" src="{% static 'images/help and support.png'%}" alt="help and support button">
+                        <div id="helpandsupporttext" class="sidebartext">Help & Support</div>
+                </button>
+        </div>
+</body>
+
+</html>

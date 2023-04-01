@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Follow Beside Me</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+	{% load static %}
+	<link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+	<link rel="stylesheet" href="{% static 'css/index.css'%}"/>
+	<script scr="{% static 'js/index.js'%}" type="text/javascript"></script>
+</head>
+
+<body style="margin:0">
+	<div class="left split">
+		<div class="splitleftimage" onclick="window.open('https://www.instagram.com/followbesideme/', '_blank');">
+			<img class="splitleftimage" src="{% static 'images/logo.png'%}" alt="split left image">
+		</div>
+	</div>
+	<div class="right split">
+		<div class="loginsectiondiv">
+			<div class="logintextdiv">Login</div>
+			<form action="{% url 'index' %}" method="post">
+				{% csrf_token %}
+				<div class="input-container">
+					<input class="inputbox" name="email" type="text" Required maxlength = "60" >
+					<label>Email</label>
+				</div>
+				<div class="input-container">
+					<input class="inputbox" name="password" id="passwordinput" type="password" maxlength = "100" Required>
+					<label>Password</label>
+				</div>
+				<div class="loginbuttondiv">
+					<button class="loginbutton" type="submit">LOGIN</button>
+				</div>
+			</form>
+			<div id="ptag1">{{errormessage}}</div>
+			<div id="ptag2">{{successmessage}}</div>
+			<div class="linkedwords">
+				<a href="{% url 'signup' %}" id="signup">Sign up</a>
+			</div>
+			<div class="linkedwords" id="forgotpassword">
+				<a href="{% url 'forgotpassword' %}"> Forgot password?</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

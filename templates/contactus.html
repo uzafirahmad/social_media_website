@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% comment %} <meta name="Index" content="width=device-width, initial-scale=1.0"> {% endcomment %}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png'%}"/>
+    <link rel="stylesheet" href="{% static 'css/contactus.css'%}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/contactus.js'%}" type="text/javascript"></script>
+    <title>Contact Us</title>
+</head>
+<body>
+    <div id="nav-placeholder">
+        {% include 'navbars.html' %}
+    </div>
+    <div id="screen">
+        <div id="settingsheaderdiv">
+            <p id="mysettingstext">Contact Us</p>
+        </div>
+        <div id="allsettingsoptionsmasterdiv">
+            <div id="allsettingsoptionsmasterdivchildren">
+            <form method="post" action="{% url 'contactus' %}">
+                {% csrf_token %}
+                <div class="changepasswordchildrendiv">
+                    <div class="changepasswordchildrendivtext">Email:</div>
+                    <input class="passwordinputbox" name="email" type="email" placeholder="The email for us to respond" maxlength = "100" Required>
+                </div>
+                <div class="changepasswordchildrendiv">
+                    <div class="changepasswordchildrendivtext">Title:</div>
+                    <input class="passwordinputbox" name="Title" type="text" placeholder="Topic" Required>
+                </div>
+                <div id="changepasswordchildrendivtextdesc" class="changepasswordchildrendiv">
+                    <div id="changepasswordchildrendivtextdescs" class="changepasswordchildrendivtext">Description: </div>
+                    <textarea class="textareainput" name="Description" Required></textarea>
+                </div>
+            </div>
+            <div id="changepasswordbuttonsubmitdiv"><button type="submit" id="changepasswordbuttonsubmit">Submit</button></div>
+            </form>
+            <div id="errormessage">{{errormessage}}</div>
+            <div id="succcessmessage">{{succcessmessage}}</div>
+        </div>
+    </div>
+</body>
+</html>

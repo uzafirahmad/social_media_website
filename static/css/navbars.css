@@ -1,0 +1,779 @@
+@charset "utf-8";
+
+
+@media (min-width : 1024px) {
+    * {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+        margin: 0px;
+    }
+
+    .headernavbar {
+        background-color:#1d786a;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding: 10px 0px;
+        height: 61px;
+    }
+
+    .leftheader {
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+    }
+
+    .middleheader {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rightheader {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+
+    #searchbarinput {
+        border: none;
+        background-color: rgba(244, 243, 238, 1);
+        width: 30vw;
+        padding-left: 5px;
+        height: 30px;
+        outline: none;
+        color: black;
+        font-size: 14px;
+        border-radius: 0px;
+    }
+
+    .searchbutton {
+        border: none;
+        border-left: 1px solid rgb(93, 93, 93);
+        background-color: rgba(244, 243, 238, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .searchbuttonimg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .leftheadericons {
+        display: none;
+        width: 25px;
+        height: 25px;
+        filter:  brightness(0) invert(1);
+    }
+
+    .iconbuttons{
+        display: none;
+        height: 30px;
+        width: 30px;
+        background:none;
+        margin: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+
+    #profilebutton{
+        width: 40px;
+    }
+
+    .sideiconbuttons {
+        width: 230px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(53, 53, 53, 1);
+        border: none;
+        padding-left: 15px;
+        margin: 20px 10px;
+        white-space: nowrap;
+        border-radius: 10px;
+    }
+
+    .sideiconbuttons:hover {
+        background-color:#29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .navicons {
+        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+        filter:  brightness(0) invert(1);
+    }
+
+    .sidebar {
+        display: block;
+        visibility: visible;
+        top: 61px;
+        left: 0;
+        background-color: rgba(53, 53, 53, 1);
+        position: fixed;
+        border-right: 1px solid black;
+        width: 251px;
+        height: 100%;
+        padding-top: calc(50vh - 300px);
+        padding-bottom: calc(50vh - 210px);
+    }
+
+    .sidebartext {
+        font-size: 23px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .FollowBesideMetext {
+        display: flex;
+        justify-content: center;
+        font-size: 28px;
+        padding-left: 15px;
+        font-weight: bolder;
+        color: white;
+        cursor: pointer;
+    }
+
+    #menu {
+        display: none;
+    }
+
+    #home {
+        display: none;
+    }
+
+    #dimscreen {
+        display: none;
+    }
+
+    .logoutpopup{
+        visibility: hidden;
+        right: 0;
+        z-index: 999;
+        top: 61px;
+        position: fixed;
+        width: 102px;
+		display: flex;
+		flex-direction: column;
+        background-color:rgba(53, 53, 53, 1);
+        border: 1px solid rgb(100, 100, 100);
+	}
+
+    .popupbuttons{
+        color: white;
+        border: none;
+        background-color:rgba(53, 53, 53, 1);
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        align-items: center;
+    }
+
+    .logutdiv{
+        margin-top: 7px;
+    }
+
+    .popupbuttons:hover{
+        background-color: #29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    #logouticon{
+        filter:  brightness(0) invert(1);
+        margin-right:10px;
+    }
+
+    .popupdivtext{
+        font-weight: bold;
+    }
+
+    .popupdivicons{
+        filter:  brightness(0) invert(1);
+        width: 20px;
+        height: 20px;
+    }
+
+    #pageheaderatagfornotauthdiv{
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 17px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .rightheadericons{
+        width: 30px;
+        height: 30px;
+        filter:  brightness(0) invert(1);
+    }
+
+    .righticons{
+        background:none;
+        height: 35px;
+        width: 35px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        border: none;
+        margin: 5px;
+    }
+
+    #profilepictureiconheadernavbar{
+        width: 35px !important;
+        height: 35px !important;
+        border-radius: 5px !important;
+    }
+
+    #jism {
+        z-index: 1;
+        position: absolute;
+        margin-left: 251px;
+        top: 61px;
+    }
+}
+
+@media (min-width: 450px) and (max-width: 1023px) {
+    * {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* body::-webkit-scrollbar {
+        display: none;
+    } */
+
+    body {
+        /* -ms-overflow-style: none;
+        IE and Edge
+        scrollbar-width: none;
+        Firefox */
+        margin: 0px;
+    }
+
+    .headernavbar {
+        background-color:#1d786a;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding: 10px 0px;
+        height: 61px;
+    }
+
+    .leftheader {
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+    }
+
+    .middleheader {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rightheader {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+
+    #searchbarinput {
+        background-color:rgba(244, 243, 238, 1);
+        width: 45vw;
+        padding-left: 5px;
+        height: 25px;
+        outline: none;
+        border: none;
+        font-size: 13px;
+        border-radius: 0px;
+    }
+
+    .searchbutton {
+        border: none;
+        border-left:1px solid black;
+        background-color: rgba(244, 243, 238, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .searchbuttonimg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .leftheadericons {
+        width: 25px !important;
+        height: 25px !important;
+        filter:  brightness(0) invert(1) !important;
+    }
+
+    #menu:hover{
+        background-color: #29ab97;
+    }
+
+    #profilebutton{
+        width: 40px;
+    }
+
+    .FollowBesideMetext {
+        display: none;
+    }
+
+    #homebutton {
+        display: none;
+    }
+
+    .sidebar {
+        visibility: hidden;
+        top: 61px;
+        position: fixed;
+        background-color: rgba(53, 53, 53, 1);
+        border-right: 1px solid black;
+        left: 0;
+        width: 0px;
+        height: 100vh;
+        z-index: 999;
+    }
+
+    .sideiconbuttons {
+        background-color:rgba(53, 53, 53, 1);
+        width: 180px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border: none;
+        padding-left: 15px;
+        margin-bottom: calc(15vh - 50px);
+        margin: 20px 10px;
+        white-space: nowrap;
+        border-radius: 10px;
+    }
+
+    .sideiconbuttons:hover {
+        background-color:#29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .navicons {
+        filter:  brightness(0) invert(1);
+        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .sidebartext {
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    /* .disablepointevents {
+        pointer-events: none;
+    } */
+
+    #dimscreen {
+        visibility: hidden;
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: grey;
+        opacity: 0;
+        z-index: 100;
+    }
+
+    /* .disableselect{
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    } */
+
+    .logoutpopup{
+        visibility: hidden;
+        right: 0;
+        z-index: 999;
+        top: 61px;
+        position: fixed;
+        width: 102px;
+		display: flex;
+		flex-direction: column;
+        background-color:rgba(53, 53, 53, 1);
+        border: 1px solid rgb(100, 100, 100);
+	}
+
+    .popupbuttons{
+        border: none;
+        background-color: rgba(53, 53, 53, 1);
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        align-items: center;
+    }
+
+    .logutdiv{
+        margin-top: 7px;
+    }
+
+    .popupbuttons:hover{
+        background-color: #29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    #logouticon{
+        margin-right:10px;
+    }
+
+    .popupdivtext{
+        color: white;
+        font-weight: bold;
+    }
+
+    .popupdivicons{
+        filter:  brightness(0) invert(1);
+        width: 20px;
+        height: 20px;
+    }
+
+    #pageheaderatagfornotauthdiv{
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .iconbuttons{
+        height: 30px;
+        width: 30px;
+        background:none;
+        margin: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+
+    .rightheadericons{
+        width: 25px;
+        height: 25px;
+        filter:  brightness(0) invert(1);
+    }
+
+    .righticons{
+        background:none ;
+        height: 30px ;
+        width: 30px ;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        border: none ;
+        margin: 3px ;
+    }
+
+    #profilepictureiconheadernavbar{
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 5px !important;
+    }
+
+    #jism {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+}
+
+@media (max-width : 449px) {
+    * {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+        margin: 0px;
+    }
+
+    .headernavbar {
+        height: 61px;
+        background-color:#1d786a;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 999;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid black;
+        padding: 10px 0px;
+        height: 61px;
+    }
+
+    .leftheader {
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+    }
+
+    .middleheader {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rightheader {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+
+    #searchbarinput {
+        background-color:rgba(244, 243, 238, 1);
+        width: 35vw;
+        padding-left: 5px;
+        height: 25px;
+        outline: none;
+        border: none;
+        font-size: 12px;
+        border-radius: 0px;
+    }
+
+    .searchbutton {
+        border: none;
+        border-left:1px solid black;
+        background-color: rgba(244, 243, 238, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .searchbuttonimg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .leftheadericons {
+        width: 25px !important;
+        height: 25px !important;
+        filter:  brightness(0) invert(1) !important;
+    }
+
+    #menu:hover{
+        background-color: #29ab97;
+    }
+
+    #profilebutton{
+        width: 30px;
+    }
+
+    .FollowBesideMetext {
+        display: none;
+    }
+
+    #homebutton {
+        display: none;
+    }
+
+    .sidebar {
+        visibility: hidden;
+        top: 61px;
+        position: fixed;
+        background-color: rgba(53, 53, 53, 1);
+        border-right: 1px solid black;
+        left: 0;
+        width: 0px;
+        height: 100vh;
+        z-index: 999;
+    }
+
+    .sideiconbuttons {
+        background-color:rgba(53, 53, 53, 1);
+        width: 180px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border: none;
+        padding-left: 15px;
+        margin-bottom: calc(15vh - 50px);
+        margin: 20px 10px;
+        white-space: nowrap;
+        border-radius: 10px;
+    }
+
+    .sideiconbuttons:hover {
+        background-color:#29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .navicons {
+        filter:  brightness(0) invert(1);
+        margin-right: 15px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .sidebartext {
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    #dimscreen {
+        visibility: hidden;
+        position: fixed;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: grey;
+        opacity: 0;
+        z-index: 100;
+    }
+
+    .logoutpopup{
+        visibility: hidden;
+        right: 0;
+        z-index: 999;
+        top: 61px;
+        position: fixed;
+        width: 102px;
+		display: flex;
+		flex-direction: column;
+        background-color:rgba(53, 53, 53, 1);
+        border: 1px solid rgb(100, 100, 100);
+	}
+
+    .popupbuttons{
+        border: none;
+        background-color: rgba(53, 53, 53, 1);
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        align-items: center;
+    }
+
+    .logutdiv{
+        margin-top: 7px;
+    }
+
+    .popupbuttons:hover{
+        background-color: #29ab97;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    #logouticon{
+        margin-right:10px;
+    }
+
+    .popupdivtext{
+        color: white;
+        font-weight: bold;
+    }
+
+    .popupdivicons{
+        filter:  brightness(0) invert(1);
+        width: 20px;
+        height: 20px;
+    }
+
+    #pageheaderatagfornotauthdiv{
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .iconbuttons{
+        height: 30px;
+        width: 30px;
+        background:none;
+        margin: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+
+    .rightheadericons{
+        width: 25px;
+        height: 25px;
+        filter:  brightness(0) invert(1);
+    }
+
+    .righticons{
+        background:none ;
+        height: 30px;
+        width: 30px; 
+        justify-content: center;
+        display: flex;
+        align-items: center ;
+        border: none ;
+        margin: 3px;
+    }
+
+    #profilepictureiconheadernavbar{
+        width: 30px !important;
+        height: 30px !important;
+        border-radius: 5px !important;
+    }
+
+    #jism {
+        z-index: 1;
+        position: absolute;
+        top: 61px;
+    }
+}
