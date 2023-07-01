@@ -21,10 +21,9 @@ import os
 
 stripe.api_key=settings.STRIPE_SECRET_KEY
 if settings.DEBUG:
-    suggested_profiles_emails_list = ['winternshk@gmail.com', 'uzafir525@gmail.com',
-                                  'followbesideme@gmail.com', 'uzafirahmad@followbesideme.com','ayeshamunir80ee@gmail.com']
-    publishablekey="pk_test_51LwYjxBQN8yRDDL9CpdvvO9gEk4OxuER62SJ4LNmhQWqfeLqfILrWAhkXdcz1TEB1hiCC2pVFLgt4sb0Pp6HLdTr00XMq43c6Z"
-    product_id="prod_MhClpZ8JssMzpP"
+    suggested_profiles_emails_list = ['followbesideme@gmail.com', 'uzafirahmad@followbesideme.com']
+    publishablekey=""
+    product_id=""
     path_to_profile_img = "media//profile_images"
 else:
     publishablekey=""
